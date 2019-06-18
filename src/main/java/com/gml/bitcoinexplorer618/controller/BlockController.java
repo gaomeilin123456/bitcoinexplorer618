@@ -24,4 +24,13 @@ public class BlockController {
     public BlockGetDTO getBlockByHeight(@RequestParam Integer height){
         return  null;
     }
+    @GetMapping("/getBlockByPrevBlcok")
+    public BlockGetDTO getBlockByPrevBlcok(@RequestParam String prevBlock){
+        return null;
+    }
+
+    @GetMapping("/getBlockByNextBlcok")
+    public BlockGetDTO getBlockByNextBlcok(@RequestParam String nextBlock){
+        return null;
+    }
 }
