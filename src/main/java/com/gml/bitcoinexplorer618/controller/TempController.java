@@ -18,8 +18,12 @@ public class TempController {
     public String test(){
 //        JSONObject blockChainInfo = bitcoinRestApi.getBlockChainInfo();
 //        String blockChain = blockChainInfo.toJSONString();
-        JSONObject noTxBlock = bitcoinRestApi.getNoTxBlock("00000000000025a0a7355b1479e4ead33b275b10f9bef84f71efb97a0d5484ae");
-        String block = noTxBlock.toJSONString();
-        return block;
+//        JSONObject noTxBlock = bitcoinRestApi.getNoTxBlock("00000000000025a0a7355b1479e4ead33b275b10f9bef84f71efb97a0d5484ae");
+//        String block = noTxBlock.toJSONString();
+//        return block;
+//        JSONObject utxo = bitcoinRestApi.getUTXO("1d7d5226bb2d39e328262e9816694458d2ae081af6e380790bdc00b968ce0daf", 0);
+//        JSONObject utxoCheckMempool = bitcoinRestApi.getUTXOCheckMempool("0b9a0ea6c034834e79db101967985e1b0d6358cad111444ff52075106acba8d6", 0);
+
+        return null;
     }
 }
