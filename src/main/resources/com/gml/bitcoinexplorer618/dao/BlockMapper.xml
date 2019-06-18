@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gml.bitcoinexplorer618.dao.BlockMapper">
+  <resultMap id="BaseResultMap" type="com.gml.bitcoinexplorer618.po.Block">
+    <id column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="txNum" jdbcType="SMALLINT" property="txnum" />
+    <result column="outputTotal" jdbcType="DOUBLE" property="outputtotal" />
+    <result column="estimatedTxVolume" jdbcType="DOUBLE" property="estimatedtxvolume" />
+    <result column="txFees" jdbcType="DOUBLE" property="txfees" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="blockReward" jdbcType="DOUBLE" property="blockreward" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
+    <result column="weight" jdbcType="REAL" property="weight" />
+    <result column="next_block" jdbcType="CHAR" property="nextBlock" />
+    <result column="prev_block" jdbcType="CHAR" property="prevBlock" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    blockhash, height, time, txNum, outputTotal, estimatedTxVolume, txFees, version, 
+    blockReward, size, difficulty, weight, next_block, prev_block
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from block
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from block
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gml.bitcoinexplorer618.po.Block">
+    insert into block (blockhash, height, time, 
+      txNum, outputTotal, estimatedTxVolume, 
+      txFees, version, blockReward, 
+      size, difficulty, weight, 
+      next_block, prev_block)
+    values (#{blockhash,jdbcType=CHAR}, #{height,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{txnum,jdbcType=SMALLINT}, #{outputtotal,jdbcType=DOUBLE}, #{estimatedtxvolume,jdbcType=DOUBLE}, 
+      #{txfees,jdbcType=DOUBLE}, #{version,jdbcType=VARCHAR}, #{blockreward,jdbcType=DOUBLE}, 
+      #{size,jdbcType=INTEGER}, #{difficulty,jdbcType=DOUBLE}, #{weight,jdbcType=REAL}, 
+      #{nextBlock,jdbcType=CHAR}, #{prevBlock,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gml.bitcoinexplorer618.po.Block">
+    insert into block
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blockhash != null">
+        blockhash,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="txnum != null">
+        txNum,
+      </if>
+      <if test="outputtotal != null">
+        outputTotal,
+      </if>
+      <if test="estimatedtxvolume != null">
+        estimatedTxVolume,
+      </if>
+      <if test="txfees != null">
+        txFees,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="blockreward != null">
+        blockReward,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="difficulty != null">
+        difficulty,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="nextBlock != null">
+        next_block,
+      </if>
+      <if test="prevBlock != null">
+        prev_block,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blockhash != null">
+        #{blockhash,jdbcType=CHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txnum != null">
+        #{txnum,jdbcType=SMALLINT},
+      </if>
+      <if test="outputtotal != null">
+        #{outputtotal,jdbcType=DOUBLE},
+      </if>
+      <if test="estimatedtxvolume != null">
+        #{estimatedtxvolume,jdbcType=DOUBLE},
+      </if>
+      <if test="txfees != null">
+        #{txfees,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="blockreward != null">
+        #{blockreward,jdbcType=DOUBLE},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="difficulty != null">
+        #{difficulty,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=REAL},
+      </if>
+      <if test="nextBlock != null">
+        #{nextBlock,jdbcType=CHAR},
+      </if>
+      <if test="prevBlock != null">
+        #{prevBlock,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gml.bitcoinexplorer618.po.Block">
+    update block
+    <set>
+      <if test="height != null">
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txnum != null">
+        txNum = #{txnum,jdbcType=SMALLINT},
+      </if>
+      <if test="outputtotal != null">
+        outputTotal = #{outputtotal,jdbcType=DOUBLE},
+      </if>
+      <if test="estimatedtxvolume != null">
+        estimatedTxVolume = #{estimatedtxvolume,jdbcType=DOUBLE},
+      </if>
+      <if test="txfees != null">
+        txFees = #{txfees,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="blockreward != null">
+        blockReward = #{blockreward,jdbcType=DOUBLE},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=INTEGER},
+      </if>
+      <if test="difficulty != null">
+        difficulty = #{difficulty,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=REAL},
+      </if>
+      <if test="nextBlock != null">
+        next_block = #{nextBlock,jdbcType=CHAR},
+      </if>
+      <if test="prevBlock != null">
+        prev_block = #{prevBlock,jdbcType=CHAR},
+      </if>
+    </set>
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gml.bitcoinexplorer618.po.Block">
+    update block
+    set height = #{height,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      txNum = #{txnum,jdbcType=SMALLINT},
+      outputTotal = #{outputtotal,jdbcType=DOUBLE},
+      estimatedTxVolume = #{estimatedtxvolume,jdbcType=DOUBLE},
+      txFees = #{txfees,jdbcType=DOUBLE},
+      version = #{version,jdbcType=VARCHAR},
+      blockReward = #{blockreward,jdbcType=DOUBLE},
+      size = #{size,jdbcType=INTEGER},
+      difficulty = #{difficulty,jdbcType=DOUBLE},
+      weight = #{weight,jdbcType=REAL},
+      next_block = #{nextBlock,jdbcType=CHAR},
+      prev_block = #{prevBlock,jdbcType=CHAR}
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </update>
+</mapper>
