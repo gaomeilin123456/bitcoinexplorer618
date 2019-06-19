@@ -6,7 +6,6 @@ import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
 import java.util.HashMap;
@@ -19,7 +18,7 @@ public class BitcoinJsonRpcApiImpl implements BitcoinJsonRpcApi {
 
     public BitcoinJsonRpcApiImpl(@Value("${bitcoin.jsonrpc.username}") String username,
                                  @Value("${bitcoin.jsonrpc.password}") String password,
-                                 @Value("${bitcoin.jsonrpc.url}") String url) throws MalformedURLException {
+                                 @Value("${bitcoin.jsonrpc.url}") String url) throws Throwable {
         HashMap<String, String> headers = new HashMap<>();
         String authStrOrig = String.format("%s:%s",username,password);
         String authStr = Base64.getEncoder().encodeToString(authStrOrig.getBytes());
@@ -28,45 +27,36 @@ public class BitcoinJsonRpcApiImpl implements BitcoinJsonRpcApi {
         jsonRpcHttpClient = new JsonRpcHttpClient(new URL(url),headers);
     }
 
+
     @Override
     public JSONObject getBlockChainInfo() throws Throwable {
-        JSONObject jsonObject = jsonRpcHttpClient.invoke("getblockchaininfo", new Object[]{}, JSONObject.class);
-        return jsonObject;
+        JSONObject result = jsonRpcHttpClient.invoke("getblockchaininfo", new Object[]{}, JSONObject.class);
+        return result;
     }
 
     @Override
-    public JSONObject getNoTxBlock(String blockhash) throws Throwable {
-        JSONObject jsonObject = jsonRpcHttpClient.invoke("getnotxblock", new Object[]{blockhash}, JSONObject.class);
-        return jsonObject;
-    }
-
-    @Override
-    public JSONObject getHeadersByblockhash(String blockhash) throws Throwable {
-        JSONObject jsonObject = jsonRpcHttpClient.invoke("getheadersbyblockhash", new Object[]{blockhash}, JSONObject.class);
-        return jsonObject;
+    public JSONObject getBlockByHash(String blockhash) throws Throwable {
+        JSONObject result = jsonRpcHttpClient.invoke("getblock", new Object[]{blockhash}, JSONObject.class);
+        return result;
     }
 
     @Override
     public JSONObject getTxByTxhash(String txhash) throws Throwable {
-        JSONObject jsonObject = jsonRpcHttpClient.invoke("gettxbytxhash", new Object[]{txhash}, JSONObject.class);
-        return jsonObject;
+        JSONObject result = jsonRpcHttpClient.invoke("getrawtransaction", new Object[]{txhash}, JSONObject.class);
+        return result;
     }
 
     @Override
-    public JSONObject getByHeight(Integer height) throws Throwable {
-        JSONObject jsonObject = jsonRpcHttpClient.invoke("getbyheight", new Object[]{height}, JSONObject.class);
-        return jsonObject;
+    public Integer getBlockCount() throws Throwable {
+        Integer result = jsonRpcHttpClient.invoke("getblockcount", new Object[]{}, Integer.class);
+        return result;
     }
 
     @Override
-    public JSONObject getMempool() throws Throwable {
-        JSONObject jsonObject = jsonRpcHttpClient.invoke("getblockchaininfo", new Object[]{}, JSONObject.class);
-        return jsonObject;
+    public Double getBalace() throws Throwable {
+        Double result = jsonRpcHttpClient.invoke("getbalance", new Object[]{"*",6}, Double.class);
+        return result;
     }
 
-    @Override
-    public JSONObject getMempoolContents() throws Throwable {
-        JSONObject jsonObject = jsonRpcHttpClient.invoke("getblockchaininfo", new Object[]{}, JSONObject.class);
-        return jsonObject;
-    }
+
 }
