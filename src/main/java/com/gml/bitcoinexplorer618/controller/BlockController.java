@@ -52,19 +52,23 @@ public class BlockController {
     }
     @GetMapping("/getBlockByBlockhash")
     public BlockGetDTO getBlockByBlockhash(@RequestParam String blockhash){
-        return  null;
+        BlockGetDTO blockByBlockhash = blockService.getBlockByBlockhash(blockhash);
+        return  blockByBlockhash;
     }
     @GetMapping("/getBlockByHeight")
     public BlockGetDTO getBlockByHeight(@RequestParam Integer height){
-        return  null;
+        BlockGetDTO blockByHeight = blockService.getBlockByHeight(height);
+        return  blockByHeight;
     }
     @GetMapping("/getBlockByPrevBlcok")
     public BlockGetDTO getBlockByPrevBlcok(@RequestParam String prevBlock){
-        return null;
+        BlockGetDTO blockByPrevBlcok = blockService.getBlockByPrevBlcok(prevBlock);
+        return blockByPrevBlcok;
     }
 
     @GetMapping("/getBlockByNextBlcok")
     public BlockGetDTO getBlockByNextBlcok(@RequestParam String nextBlock){
-        return null;
+        BlockGetDTO blockByNextBlcok = blockService.getBlockByNextBlcok(nextBlock);
+        return blockByNextBlcok;
     }
 }

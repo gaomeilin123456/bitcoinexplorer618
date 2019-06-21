@@ -41,13 +41,14 @@ public class TempController {
 //
 //        JsonRpcHttpClient client = new JsonRpcHttpClient(new URL("http://127.0.0.1:18332/"),headers);
 //        JSONObject user = client.invoke("getblockchaininfo", new Object[]{}, JSONObject.class);
-        JSONObject blockChainInfo = bitcoinJsonRpcApi.getBlockChainInfo();
+//        JSONObject blockChainInfo = bitcoinJsonRpcApi.getBlockChainInfo();
 //        JSONObject blockByHash = bitcoinJsonRpcApi.getBlockByHash("");
 //        JSONObject byTxhash = bitcoinJsonRpcApi.getTxByTxhash("");
-        Integer blockCount = bitcoinJsonRpcApi.getBlockCount();
-        Double balace = bitcoinJsonRpcApi.getBalace();
-        String tempBlockhash = "0000000000007269a38df4cf2507eb886bc972e611b8130ac193b72a55ea66a7";
-        bitcoinService.syncBlockchainFromHash(tempBlockhash);
+//        Integer blockCount = bitcoinJsonRpcApi.getBlockCount();
+//        Double balace = bitcoinJsonRpcApi.getBalace();
+//        String tempBlockhash = "0000000000007269a38df4cf2507eb886bc972e611b8130ac193b72a55ea66a7";
+//        bitcoinService.syncBlockchainFromHash(tempBlockhash);
+        bitcoinService.syncBlockchainFromHash("000000000000046168a28dc58cc316e98253e49a572740f1f84ebe9862a5c3e3");
         return null;
     }
 }

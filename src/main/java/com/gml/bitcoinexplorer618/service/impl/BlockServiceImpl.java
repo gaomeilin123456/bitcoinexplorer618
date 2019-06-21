@@ -39,21 +39,25 @@ public class BlockServiceImpl implements BlockService {
 
     @Override
     public BlockGetDTO getBlockByBlockhash(String blockhash) {
-        return null;
+        BlockGetDTO blockByBlockhash = blockMapper.getBlockByBlockhash(blockhash);
+        return blockByBlockhash;
     }
 
     @Override
     public BlockGetDTO getBlockByHeight(Integer height) {
-        return null;
+        BlockGetDTO blockByHeight = blockMapper.getBlockByHeight(height);
+        return blockByHeight;
     }
 
     @Override
     public BlockGetDTO getBlockByPrevBlcok(String prevBlock) {
-        return null;
+        BlockGetDTO blockByPrevBlcok = blockMapper.getBlockByPrevBlcok(prevBlock);
+        return blockByPrevBlcok;
     }
 
     @Override
     public BlockGetDTO getBlockByNextBlcok(String nextBlock) {
-        return null;
+        BlockGetDTO blockByNextBlcok = blockMapper.getBlockByNextBlcok(nextBlock);
+        return blockByNextBlcok;
     }
 }

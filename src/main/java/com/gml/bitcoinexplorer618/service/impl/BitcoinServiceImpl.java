@@ -54,8 +54,6 @@ public class BitcoinServiceImpl implements BitcoinService {
         }
         logger.info("end sync blockchain");
     }
-
-
     @Override
     @Transactional
     public String syncBlock(String blockhash) throws Throwable {
@@ -102,6 +100,7 @@ public class BitcoinServiceImpl implements BitcoinService {
         tx.setWeight(txJson.getFloat("weight"));
         tx.setConfirmations(confirmations);
         transactionMapper.insert(tx);
+
 
         //todo set tx detail
         syncTxDetail(txJson, txid);

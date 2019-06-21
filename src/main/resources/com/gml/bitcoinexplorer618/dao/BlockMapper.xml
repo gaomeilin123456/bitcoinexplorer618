@@ -196,4 +196,37 @@
       prev_block = #{prevBlock,jdbcType=CHAR}
     where blockhash = #{blockhash,jdbcType=CHAR}
   </update>
+
+  <select id="selectRecentBlocks" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    order by height desc
+    limit 5
+  </select>
+
+  <select id="getBlockByBlockhash" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </select>
+  <select id="getBlockByHeight" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where height = #{height}
+  </select>
+  <select id="getBlockByPrevBlcok" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where prev_block = #{prevBlock,jdbcType=CHAR}
+  </select>
+  <select id="getBlockByNextBlcok" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where next_block = #{nextBlock,jdbcType=CHAR}
+  </select>
 </mapper>
